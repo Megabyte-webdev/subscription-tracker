@@ -1,0 +1,7 @@
+POST http://localhost:5500/api/auth/sign-up
+
+{
+  "email": "afolabimubarak18@gmail.com",
+  "password": "password123",
+  "name": "Afolabi Mubarak"
+}
