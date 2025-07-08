@@ -37,6 +37,7 @@ const subscriptionSchema = new mongoose.Schema(
         "other",
       ],
       required: true,
+      set: (v) => v.toLowerCase(), // <== auto-lowercase input
     },
     paymentMethod: {
       type: String,
@@ -52,13 +53,12 @@ const subscriptionSchema = new mongoose.Schema(
       type: Date,
       required: true,
       validate: {
-        validator: (value) => value <= new Date(),
+        validator: (value) => value.getTime() <= Date.now(),
         message: "Start date must be in the past",
       },
     },
     renewalDate: {
       type: Date,
-      required: true,
       validate: {
         validator: function (value) {
           return value > this.startDate;
